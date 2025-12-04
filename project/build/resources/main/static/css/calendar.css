@@ -1,0 +1,78 @@
+/* calendar.css - 캘린더 페이지 전용 */
+
+/* 전체 컨테이너 */
+.calendar-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 캘린더 헤더 */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    font-size: 1.5rem;
+}
+
+/* 버튼 */
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* 캘린더 테이블 */
+table.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table.calendar th, table.calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+table.calendar th {
+    background-color: #f2f2f2;
+}
+
+/* 오늘 날짜 강조 */
+table.calendar td.today {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+/* 일정 추가 버튼 */
+#add-schedule {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #ffeb3b;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+#add-schedule:hover {
+    background-color: #fdd835;
+}

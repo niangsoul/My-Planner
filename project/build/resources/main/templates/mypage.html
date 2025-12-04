@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Planner - 마이페이지</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1><a href="/">My Planner</a></h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/calendar">캘린더</a></li>
+            <li><a href="/diary">다이어리</a></li>
+            <li><a href="/stats">통계</a></li>
+            <li><a href="/logout">로그아웃</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="mypage-container">
+        <h2>마이페이지</h2>
+        <div class="user-info">
+            <p><strong>이름:</strong> <span th:text="${user.name}">홍길동</span></p>
+            <p><strong>닉네임:</strong> <span th:text="${user.nickname}">닉네임</span></p>
+            <p><strong>이메일:</strong> <span th:text="${user.email}">example@example.com</span></p>
+            <p><strong>휴대폰:</strong> <span th:text="${user.phone}">010-0000-0000</span></p>
+            <p><strong>나이:</strong> <span th:text="${user.age}">25</span></p>
+            <p><strong>성별:</strong> <span th:text="${user.gender}">남</span></p>
+        </div>
+
+        <form th:action="@{/mypage/update}" method="post" class="update-form">
+            <h3>정보 수정</h3>
+            <div class="form-group">
+                <label>이름</label>
+                <input type="text" th:value="${user.name}" name="name">
+            </div>
+            <div class="form-group">
+                <label>닉네임</label>
+                <input type="text" th:value="${user.nickname}" name="nickname">
+            </div>
+            <div class="form-group">
+                <label>비밀번호</label>
+                <input type="password" name="password" placeholder="변경할 비밀번호 입력">
+            </div>
+            <div class="form-group">
+                <label>나이</label>
+                <input type="number" th:value="${user.age}" name="age">
+            </div>
+            <div class="form-group">
+                <label>성별</label>
+                <select name="gender" th:value="${user.gender}">
+                    <option value="남">남</option>
+                    <option value="여">여</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-update">정보 수정</button>
+        </form>
+
+        <form th:action="@{/mypage/delete}" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');" class="delete-form">
+            <button type="submit" class="btn-delete">회원 탈퇴</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Planner. All rights reserved.</p>
+</footer>
+</body>
+</html>

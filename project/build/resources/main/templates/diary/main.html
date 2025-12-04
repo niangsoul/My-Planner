@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 - My Planner</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/diary.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1><a href="/">My Planner</a></h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/calendar">캘린더</a></li>
+            <li><a href="/diary">다이어리</a></li>
+            <li><a href="/stats">통계</a></li>
+
+            <li th:if="${!loggedIn}"><a href="/login" class="btn-login">로그인</a></li>
+            <li th:if="${!loggedIn}"><a href="/signup" class="btn-signup">회원가입</a></li>
+
+            <li th:if="${loggedIn}">
+                <span th:text="${nickname} + '님'"></span>
+                <a href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="diary-container">
+        <h2>나의 다이어리</h2>
+
+        <!-- 작성 폼 -->
+        <form th:action="@{/diary/save}" method="post" class="diary-form">
+            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+            <textarea name="content" placeholder="내용을 입력하세요" rows="6" required></textarea>
+            <input type="date" name="date" required>
+
+            <div class="form-actions">
+                <button type="submit">저장</button>
+            </div>
+        </form>
+
+        <!-- 작성된 다이어리 리스트 -->
+        <div class="diary-list">
+            <h3>작성된 다이어리</h3>
+            <ul>
+                <li th:each="diary : ${diaries}">
+                    <strong th:text="${diary.date}">2025-12-01</strong>
+                    - <span th:text="${diary.title}">제목</span><br>
+                    <p th:text="${diary.content}">내용</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Planner. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캘린더 - My Planner</title>
+    <link rel="stylesheet" href="/css/calendar.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1><a href="/">My Planner</a></h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/calendar">캘린더</a></li>
+            <li><a href="/diary">다이어리</a></li>
+            <li><a href="/stats">통계</a></li>
+
+            <!-- 로그인 상태에 따라 메뉴 변경 -->
+            <li th:if="${!loggedIn}"><a href="/login" class="btn-login">로그인</a></li>
+            <li th:if="${!loggedIn}"><a href="/signup" class="btn-signup">회원가입</a></li>
+
+            <li th:if="${loggedIn}">
+                <span th:text="${nickname} + '님'"></span>
+                <a href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <h2 id="month-year">2025년 12월</h2>
+            <button id="next-month">&gt;</button>
+        </div>
+
+        <table class="calendar">
+            <thead>
+            <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+            </thead>
+            <tbody id="calendar-body">
+            <!-- JS로 동적 생성 -->
+            </tbody>
+        </table>
+
+        <button id="add-schedule" class="btn">일정 추가</button>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Planner. All rights reserved.</p>
+</footer>
+
+<script src="/js/calendar.js"></script>
+<script src="/js/schedule-modal.js"></script>
+</body>
+</html>
