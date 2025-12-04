@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Planner</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1><a href="">My Planner</a></h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/calendar">캘린더</a></li>
+            <li><a href="/diary">다이어리</a></li>
+            <li><a href="/stats">통계</a></li>
+
+            <!-- 로그인 여부에 따라 메뉴 변경 -->
+            <li th:if="${!loggedIn}"><a href="/login" class="btn-login">로그인</a></li>
+            <li th:if="${!loggedIn}"><a href="/signup" class="btn-signup">회원가입</a></li>
+
+            <li th:if="${loggedIn}"><a href="/mypage">[[${nickname}]]님<a/></li>
+            <li th:if="${loggedIn}"><a href="/logout">로그아웃</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="welcome">
+        <h2 th:if="${loggedIn}">안녕하세요, [[${nickname}]]님!</h2>
+        <h2 th:if="${!loggedIn}">안녕하세요, 사용자님!</h2>
+        <p>오늘의 일정과 습관을 확인해보세요.</p>
+    </section>
+
+    <section class="summary">
+        <div class="card">
+            <h3>오늘의 일정</h3>
+            <p>3개 남음</p>
+        </div>
+        <div class="card">
+            <h3>습관 체크</h3>
+            <p>2/5 완료</p>
+        </div>
+        <div class="card">
+            <h3>최근 다이어리</h3>
+            <p>오늘 기분 좋음!</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Planner. All rights reserved.</p>
+</footer>
+</body>
+</html>

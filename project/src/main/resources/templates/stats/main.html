@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통계 - My Planner</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/stats.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1><a href="/">My Planner</a></h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/calendar">캘린더</a></li>
+            <li><a href="/diary">다이어리</a></li>
+            <li><a href="/stats">통계</a></li>
+
+            <li th:if="${!loggedIn}"><a href="/login" class="btn-login">로그인</a></li>
+            <li th:if="${!loggedIn}"><a href="/signup" class="btn-signup">회원가입</a></li>
+
+            <li th:if="${loggedIn}">
+                <span th:text="${nickname} + '님'"></span>
+                <a href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="stats-container">
+        <h2>나의 통계</h2>
+
+        <!-- 다이어리 개수 통계 -->
+        <div class="chart-card">
+            <h3>월별 다이어리 작성 개수</h3>
+            <canvas id="diaryChart"></canvas>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Planner. All rights reserved.</p>
+</footer>
+
+<script th:inline="javascript">
+    const diaryData = [[${diaryCounts}]];
+    const diaryLabels = [[${months}]];
+
+    const ctxDiary = document.getElementById('diaryChart').getContext('2d');
+    new Chart(ctxDiary, {
+        type: 'bar',
+        data: {
+            labels: diaryLabels,
+            datasets: [{
+                label: '다이어리 작성 개수',
+                data: diaryData,
+                backgroundColor: '#4CAF50'
+            }]
+        }
+    });
+
+    const habitData = [[${habitCompletion}]];
+    const habitLabels = [[${habitNames}]];
+
+    const ctxHabit = document.getElementById('habitChart').getContext('2d');
+    new Chart(ctxHabit, {
+        type: 'doughnut',
+        data: {
+            labels: habitLabels,
+            datasets: [{
+                data: habitData,
+                backgroundColor: ['#4CAF50','#ffeb3b','#f44336','#2196f3']
+            }]
+        }
+    });
+</script>
+</body>
+</html>

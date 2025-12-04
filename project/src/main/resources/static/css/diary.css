@@ -1,0 +1,92 @@
+/* diary.css - 다이어리 전용 스타일 */
+.diary-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.diary-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+/* 작성 폼 */
+.diary-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    background-color: #f0fff0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.diary-form input[type="text"],
+.diary-form input[type="date"],
+.diary-form textarea {
+    padding: 14px;
+    border: 1px solid #4CAF50;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 100%;
+    resize: vertical;
+    transition: border 0.3s;
+}
+
+.diary-form input[type="text"]:focus,
+.diary-form input[type="date"]:focus,
+.diary-form textarea:focus {
+    border-color: #45a049;
+    outline: none;
+}
+
+.diary-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.diary-form button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.diary-form button:hover {
+    background-color: #45a049;
+}
+
+/* 작성된 다이어리 리스트 */
+.diary-list h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.diary-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.diary-list li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.diary-list li strong {
+    color: #4CAF50;
+}
+
+.diary-list li p {
+    margin-top: 5px;
+}
